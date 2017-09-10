@@ -7,21 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApiCrud.Models
+namespace ApiCrud.Models
 {
     using System;
     using System.Collections.Generic;
     
     public partial class Employee
     {
-        public int Id { get; set; }
+        public int EmployeeId { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Description { get; set; }
         public Nullable<decimal> Salary { get; set; }
         public string Country { get; set; }
         public string State { get; set; }
-        public Nullable<System.DateTime> DOB { get; set; }
+        public Nullable<System.DateTime> DateofBirth { get; set; }
+        public Nullable<bool> IsActive { get; set; }
         public string ImageUrl { get; set; }
     }
 }

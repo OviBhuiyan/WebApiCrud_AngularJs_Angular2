@@ -7,17 +7,18 @@
     <Schema Namespace="WebApiAngularDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Employee">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="EmployeeId" />
           </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FirstName" Type="varchar" MaxLength="50" />
           <Property Name="LastName" Type="varchar" MaxLength="50" />
           <Property Name="Description" Type="varchar(max)" />
           <Property Name="Salary" Type="decimal" Precision="18" Scale="2" />
           <Property Name="Country" Type="varchar" MaxLength="50" />
           <Property Name="State" Type="varchar" MaxLength="50" />
-          <Property Name="DOB" Type="datetime" />
-          <Property Name="ImageUrl" Type="varchar" MaxLength="50" />
+          <Property Name="DateofBirth" Type="datetime" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="ImageUrl" Type="varchar(max)" />
         </EntityType>
         <EntityContainer Name="WebApiAngularDBModelStoreContainer">
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
@@ -31,17 +32,18 @@
         </EntityContainer>
         <EntityType Name="Employee">
           <Key>
-            <PropertyRef Name="Id" />
+            <PropertyRef Name="EmployeeId" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Salary" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="DOB" Type="DateTime" Precision="3" />
-          <Property Name="ImageUrl" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DateofBirth" Type="DateTime" Precision="3" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="ImageUrl" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -53,14 +55,15 @@
             <EntityTypeMapping TypeName="WebApiAngularDBModel.Employee">
               <MappingFragment StoreEntitySet="Employee">
                 <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
-                <ScalarProperty Name="DOB" ColumnName="DOB" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="DateofBirth" ColumnName="DateofBirth" />
                 <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="Country" ColumnName="Country" />
                 <ScalarProperty Name="Salary" ColumnName="Salary" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

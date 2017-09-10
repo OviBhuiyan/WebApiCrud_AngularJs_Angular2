@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApiCrud", "WebApiCrud\WebApiCrud.csproj", "{3C131B4A-1E92-4E7E-980B-5EC25C238EFD}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClientAngularJs", "ClientAngularJs\ClientAngularJs.csproj", "{4B437505-085F-434B-B22E-43A10683DF1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Api", "Web.Api\Web.Api.csproj", "{304B933D-5240-4BF6-8FB5-0E1F8FF23DFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3C131B4A-1E92-4E7E-980B-5EC25C238EFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C131B4A-1E92-4E7E-980B-5EC25C238EFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C131B4A-1E92-4E7E-980B-5EC25C238EFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C131B4A-1E92-4E7E-980B-5EC25C238EFD}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4B437505-085F-434B-B22E-43A10683DF1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4B437505-085F-434B-B22E-43A10683DF1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B437505-085F-434B-B22E-43A10683DF1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4B437505-085F-434B-B22E-43A10683DF1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{304B933D-5240-4BF6-8FB5-0E1F8FF23DFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{304B933D-5240-4BF6-8FB5-0E1F8FF23DFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{304B933D-5240-4BF6-8FB5-0E1F8FF23DFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{304B933D-5240-4BF6-8FB5-0E1F8FF23DFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

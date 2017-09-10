@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WebApiCrud.Models
+namespace ApiCrud.Models
 {
     using System;
     using System.Data.Entity;
