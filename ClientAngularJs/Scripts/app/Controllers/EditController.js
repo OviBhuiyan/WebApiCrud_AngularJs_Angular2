@@ -21,20 +21,18 @@
     $scope.id = 0;
 
     $scope.getStates = function () {
+        debugger;
         var country = $scope.country;
         if (country) {
 
             $http({
                 method: 'GET',
-                url: $config.baseApiUrl + '/country' + country
+                url: $config.baseApiUrl + '/Country/' + country
             }).then(function (success) {
-                $scope.states = successdata;
+                $scope.states = success.data;
             }, function (error) {
                 alert(error);
             });
-
-
-         
         }
         else {
             $scope.states = null;
@@ -42,7 +40,7 @@
     }
 
 
-    $scope.save = function () {
+    $scope.save = function () {   //Save OR Edit Function
         var obj = {
             EmployeeId: $scope.id,
             FirstName: $scope.firstname,
@@ -55,36 +53,74 @@
             DateofBirth: $scope.dob
         };
         if ($scope.id == 0) {
-            $http.post('/api/Employee/', obj).success(function (data) {
+            debugger;
+            $http({
+                method: 'POST',
+                url: $config.baseApiUrl + '/Employee/',
+                data: obj
+            }).then(function (success) {
                 $location.path('/list');
-            }).error(function (data) {
-                $scope.error = "An error has occured while adding employee! " + data.ExceptionMessage;
+            }, function (error) {
+                alert("save Problem !");
             });
+
+
+
+
+            //$http.post('/api/Employee/', obj).success(function (data) {
+            //    $location.path('/list');
+            //}).error(function (data) {
+            //    $scope.error = "An error has occured while adding employee! " + data.ExceptionMessage;
+            //});
         }
         else {
-            $http.put('/api/Employee/', obj).success(function (data) {
+            $http({
+                method: 'PUT',
+                url: $config.baseApiUrl + '/Employee/',
+                data: obj
+            }).then(function (success) {
                 $location.path('/list');
-            }).error(function (data) {
-                console.log(data);
-                $scope.error = "An Error has occured while Saving customer! " + data.ExceptionMessage;
+            }, function (error) {
+                alert("Edit Problem !");
             });
+
+
+            //$http.put('/api/Employee/', obj).success(function (data) {
+            //    $location.path('/list');
+            //}).error(function (data) {
+            //    console.log(data);
+            //    $scope.error = "An Error has occured while Saving customer! " + data.ExceptionMessage;
+            //});
         }
     }
 
     if ($routeParams.id) {
         $scope.id = $routeParams.id;
         $scope.title = "Edit Employee";
-        $http.get('/api/employee/' + $routeParams.id).success(function (data) {
-            $scope.firstname = data.FirstName;
-            $scope.lastname = data.LastName;
-            $scope.country = data.Country;
-            $scope.state = data.State;
-            $scope.salary = data.Salary;
-            $scope.active = data.IsActive;
-            $scope.description = data.Description;
-            $scope.dob = new Date(data.DateofBirth);
+        debugger;
+        $http({
+            method: 'GET',
+            url: $config.baseApiUrl + '/Employee/' + $routeParams.id
+            
+        }).then(function (success) {
+            debugger;
+            
+
+            $scope.firstname = success.data.FirstName;
+            $scope.lastname = success.data.LastName;
+            $scope.country = success.data.Country;
+            $scope.state = success.data.State;
+            $scope.salary = success.data.Salary;
+            $scope.active = success.data.IsActive;
+            $scope.description = success.data.Description;
+            $scope.dob = new Date(success.data.DateofBirth);
             $scope.getStates();
+        }, function (error) {
+            alert("save Problem !");
         });
+
+
+    
     }
     else {
         $scope.title = "Create New Employee";

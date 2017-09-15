@@ -39,6 +39,7 @@ EmpApp.constant('$config', {
         {
             redirectTo: '/list'
             });
+       
         $locationProvider.html5Mode(true);
 
 }]);  
