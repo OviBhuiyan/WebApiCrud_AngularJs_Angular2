@@ -1,15 +1,16 @@
-﻿EmpApp.controller("ListController", ['$scope', '$http', '$location', '$routeParams', function ($scope, $http, $location, $routeParams) {
-    //var BaseUrl = 'http://localhost:55572';
+﻿EmpApp.controller("ListController", ['$scope', '$http', '$location', '$routeParams', '$config', function ($scope, $http, $location, $routeParams, $config) {
 
+
+    debugger;
     $http({
         method: 'GET',
-        url: '/api/employee'
+        url: $config.baseApiUrl +'/Employee'
     }).then(function (success) {
         debugger;
-        alert(success.data);
+       
         $scope.employees = success.data;
-    }, function (error) {
-
+        }, function (error) {
+            alert("fail");
     });
 
 }

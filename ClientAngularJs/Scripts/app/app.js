@@ -1,9 +1,21 @@
 ﻿
 
 var EmpApp = angular.module('EmpApp', ['ngRoute']);
+// Example configuration stored as constant
+EmpApp.constant('$config', {
+    baseApiUrl: 'http://localhost:55572/api',
+    //baseUrl: '/',
+    enableDebug: true
+});
+
 
     EmpApp.config(['$locationProvider', '$routeProvider', function ($locationProvider, $routeProvider) {
-    $routeProvider.when('/list',
+        //$locationProvider.html5Mode({
+        //    enabled: true
+        //});
+      //  $locationProvider.hashPrefix('');
+
+        $routeProvider.when('/list',
         {
             templateUrl: 'Scripts/app/Views/Employee/list.html',
             controller: 'ListController'
@@ -26,7 +38,9 @@ var EmpApp = angular.module('EmpApp', ['ngRoute']);
         otherwise(
         {
             redirectTo: '/list'
-        });
+            });
+        $locationProvider.html5Mode(true);
+
 }]);  
 
 

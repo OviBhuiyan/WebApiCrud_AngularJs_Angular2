@@ -219,6 +219,7 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\Controllers\controller.js" />
+    <Content Include="Scripts\app\Controllers\EditController.js" />
     <Content Include="Scripts\app\Controllers\ListController.js" />
     <Content Include="Scripts\app\Views\Employee\delete.html" />
     <Content Include="Scripts\app\Views\Employee\edit.html" />
