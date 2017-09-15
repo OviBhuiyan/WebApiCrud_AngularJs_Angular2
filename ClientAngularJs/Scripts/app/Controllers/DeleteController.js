@@ -1,4 +1,4 @@
-﻿EmpApp.controller("DeleteController", ['$scope', '$http', '$location', '$routeParams', '$config', function ($scope, $http, $location, $routeParams, $config) {
+﻿EmpApp.controller("DeleteController", ['$scope', '$http', '$location', '$routeParams', '$config', function ($scope, $http, $location, $routeParams, $config, $timeout, cfpLoadingBar) {
 
         $scope.id = $routeParams.id;
 

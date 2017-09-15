@@ -1,4 +1,4 @@
-﻿EmpApp.controller("EditController", ['$scope', '$http', '$location', '$routeParams', '$config', function ($scope, $http, $location, $routeParams, $config) {
+﻿EmpApp.controller("EditController", ['$scope', '$http', '$location', '$routeParams', '$config', function ($scope, $http, $location, $routeParams, $config, $timeout, cfpLoadingBar) {
 
 
 

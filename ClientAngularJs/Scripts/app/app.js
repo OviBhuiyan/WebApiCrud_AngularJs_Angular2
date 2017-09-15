@@ -1,6 +1,9 @@
 ﻿
 
-var EmpApp = angular.module('EmpApp', ['ngRoute']);
+var EmpApp = angular.module('EmpApp', ['ngRoute', 'chieffancypants.loadingBar', 'ngAnimate'])
+    .config(function (cfpLoadingBarProvider) {
+        cfpLoadingBarProvider.includeSpinner = true;
+    });
 // Example configuration stored as constant
 EmpApp.constant('$config', {
     baseApiUrl: 'http://localhost:55572/api',
@@ -86,3 +89,6 @@ EmpApp.constant('$config', {
 ////follow this
 ////http://www.c-sharpcorner.com/article/angularjs-crud-operations-with-web-api-part-two/
 ////http://www.c-sharpcorner.com/article/crud-using-mvc-web-api-and-angularjs/
+
+//Progress ber documentation
+//https://github.com/chieffancypants/angular-loading-bar

@@ -1,4 +1,4 @@
-﻿EmpApp.controller("ListController", ['$scope', '$http', '$location', '$routeParams', '$config', function ($scope, $http, $location, $routeParams, $config) {
+﻿EmpApp.controller("ListController", ['$scope', '$http', '$location', '$routeParams', '$config', function ($scope, $http, $location, $routeParams, $config, $timeout, cfpLoadingBar) {
 
 
     debugger;
