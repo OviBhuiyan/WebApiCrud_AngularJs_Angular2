@@ -13,6 +13,7 @@
             <th>State</th>
             <th>Date of Birth</th>
             <th>Is Active</th>
+            <th>Photo</th>
             <th></th>
             <th></th>
         </tr>
@@ -30,6 +31,7 @@
                     {{ item.IsActive ? 'Active' : 'In Active' }}
                 </span>
             </td>
+            <td><img ng-src="{{item.ImageUrl}}" alt="{{ item.EmployeeId + ' photo' }}" style="height:100px; width:200px"/> {{item.ImageUrl}}</td>
             <td>
                 <a href="/edit/{{item.EmployeeId}}" class="glyphicon glyphicon-edit"></a>
             </td>

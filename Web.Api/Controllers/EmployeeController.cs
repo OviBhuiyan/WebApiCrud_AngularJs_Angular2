@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using Web.Api.Models;
 
@@ -12,10 +14,12 @@ namespace Web.Api.Controllers
     {
         WebApiAngularDBEntities db = new WebApiAngularDBEntities();
         // GET api/employee  
-        [ActionName("get"), HttpGet]
-        public IEnumerable<Employee> Emps()
+        [HttpGet]
+        public IEnumerable<Employee> GetEmployeeList()
         {
-            if (!db.Employees.ToList().Any())
+            var result = db.Employees.ToList();
+
+            if (!result.Any())
             {
                 var list = new List<Employee>
                 {
@@ -34,7 +38,7 @@ namespace Web.Api.Controllers
                 });
                 db.SaveChanges();
             }
-            return db.Employees.ToList();
+            return result.OrderByDescending(e=>e.EmployeeId);
 
         }
         // GET api/employee/5  
@@ -42,13 +46,20 @@ namespace Web.Api.Controllers
         {
             return db.Employees.Find(id);
         }
+        [HttpPost]
         // POST api/employee  
-        public HttpResponseMessage Post(Employee model)
+        public HttpResponseMessage AddEmployee(Employee model)
         {
             if (ModelState.IsValid)
             {
-                db.Employees.Add(model);
+
+                //string filePath = "~/Content/EmployeeImage" + model.FirstName;
+                //model.ImageUrl = filePath;
+
+                model.ImageUrl = SaveImageData(model.FirstName + ".jpg", model.UserPhoto);
+                var add = db.Employees.Add(model);
                 db.SaveChanges();
+              
                 HttpResponseMessage response = Request.CreateResponse(HttpStatusCode.Created, model);
                 return response;
             }
@@ -57,8 +68,33 @@ namespace Web.Api.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
         }
+
+        protected string SaveImageData(string FileName, byte[] Data)
+        {
+            BinaryWriter Writer = null;
+            string Name = @"C:\EmployeeImages\" + FileName;
+
+            try
+            {
+                // Create a new stream to write to the file
+                Writer = new BinaryWriter(File.OpenWrite(Name));
+
+                // Writer raw data                
+                Writer.Write(Data);
+                Writer.Flush();
+                Writer.Close();
+
+               
+            }
+           catch (Exception ex)
+            {
+                
+            }
+            return Name;
+        }
+
         // PUT api/employee/5  
-        public HttpResponseMessage Put(Employee model)
+        public HttpResponseMessage UpdateEmployeeById(Employee model)
         {
             if (ModelState.IsValid)
             {
@@ -73,7 +109,7 @@ namespace Web.Api.Controllers
             }
         }
         // DELETE api/employee/5  
-        public HttpResponseMessage Delete(int id)
+        public HttpResponseMessage DeleteEmployee(int id)
         {
             Employee emp = db.Employees.Find(id);
             if (emp == null)

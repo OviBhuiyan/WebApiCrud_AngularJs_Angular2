@@ -11,7 +11,8 @@ namespace Web.Api.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class Employee
     {
         public int EmployeeId { get; set; }
@@ -24,5 +25,7 @@ namespace Web.Api.Models
         public Nullable<System.DateTime> DateofBirth { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public string ImageUrl { get; set; }
+        public byte[] UserPhoto { get; set; }
+        public HttpPostedFile Attachment { get; set; }
     }
 }

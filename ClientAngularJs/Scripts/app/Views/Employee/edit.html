@@ -48,13 +48,27 @@
         <label for="description">
             Description:
         </label>
-        <textarea rows="5" cols="10" class="form-control" id="description" ng-model="description"></textarea>
+        <textarea rows="5" cols="10" class="form-control" id="description"  ng-model="description"></textarea>
     </div>
     <div class="form-group checkbox">
         <label>
             <input type="checkbox" ng-model="active" />Active
         </label>
     </div>
+
+    <div class="form-group">
+        
+        <img ng-src="data:image/jpeg;base64,{{UserPhoto}}" id="photo-id" width="200"  height="200"/>
+        <label for="attachment">
+            upload image:
+        </label>
+        <input type="file" name="file" onchange="angular.element(this).scope().uploadFile(this)" id="photo-upload" />
+       <!-- <input type="file" name="file" onchange="angular.element(this).scope().LoadFileData(this.files)" class="form-control"  />-->
+   
+       <!-- <input type="file" name="file" ng-model="files" class="form-control" />-->
+
+    </div>
+
     <a href="/list" class="btn btn-info">Back to List</a>
     <button type="submit" class="btn btn-default" ng-click="save()">
         Submit

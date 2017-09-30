@@ -1,4 +1,4 @@
-﻿EmpApp.controller("EditController", ['$scope', '$http', '$location', '$routeParams', '$config', function ($scope, $http, $location, $routeParams, $config, $timeout, cfpLoadingBar) {
+﻿EmpApp.controller("EditController", ['$scope', '$http', '$location', '$routeParams', 'constantValue', function ($scope, $http, $location, $routeParams, constantValue, $timeout, cfpLoadingBar, $upload) {
 
 
 
@@ -6,7 +6,7 @@
 
     $http({
         method: 'GET',
-        url: $config.baseApiUrl + '/country'
+        url: constantValue.baseApiUrl + '/Country/GetCountry'
     }).then(function (success) {
         $scope.countries = success.data;
     }, function (error) {
@@ -27,7 +27,7 @@
 
             $http({
                 method: 'GET',
-                url: $config.baseApiUrl + '/Country/' + country
+                url: constantValue.baseApiUrl + '/Country/GetStateByCountryId/' + country
             }).then(function (success) {
                 $scope.states = success.data;
             }, function (error) {
@@ -38,9 +38,56 @@
             $scope.states = null;
         }
     }
+    $scope.LoadFileData = function (files) {
+        $scope.files = files;
+    };
+
+    //Upload Image Byte Convert
+    $scope.uploadFile = function (input) {
+        debugger;
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            //Create a canvas and draw image on Client Side to get the byte[] equivalent
+            var canvas = document.createElement("canvas");
+            var imageElement = document.createElement("img");
+
+            reader.onload = function (e) {
+
+                //Sets the Old Image to new New Image //
+                var dataURL = reader.result;
+                var output = document.getElementById('photo-id');
+                output.src = dataURL;
+                //$('#photo-id').attr('src', e.target.result);
+                //var testResult = e.target.result;
+          
+                //imageElement.setAttribute('src', e.target.result);
+                //canvas.width = imageElement.width;
+                //canvas.height = imageElement.height;
+                //var context = canvas.getContext("2d");
+                //context.drawImage(imageElement, 0, 0);
+                //var base64Image = canvas.toDataURL("image/jpeg");
+         
+                //Removes the Data Type Prefix 
+                //And set the view model to the new value
+                //$scope.UserPhoto = base64Image.replace(/data:image\/jpeg;base64,/g, '');
+
+                //console.log("Encoded image: ", base64Image);
+
+                $scope.UserPhoto = dataURL.replace(/data:image\/jpeg;base64,/g, '');
+
+            }
+
+            //Renders Image on Page
+            reader.readAsDataURL(input.files[0]);
+        }
+    };
+    //End Upload Image Byte Convert
 
 
-    $scope.save = function () {   //Save OR Edit Function
+
+
+    $scope.save = function (files) {   //Save OR Edit Function
+        debugger;
         var obj = {
             EmployeeId: $scope.id,
             FirstName: $scope.firstname,
@@ -50,14 +97,20 @@
             Salary: $scope.salary,
             IsActive: $scope.active,
             Description: $scope.description,
-            DateofBirth: $scope.dob
+            DateofBirth: $scope.dob,
+            //Attachment: $scope.files[0],
+            UserPhoto: $scope.UserPhoto,
+            ImageUrl: $scope.UserPhoto
         };
         if ($scope.id == 0) {
             debugger;
+            //var ff = $scope.files[0];
             $http({
                 method: 'POST',
-                url: $config.baseApiUrl + '/Employee/',
+                url: constantValue.baseApiUrl + '/Employee/AddEmployee',
                 data: obj
+               
+                
             }).then(function (success) {
                 $location.path('/list');
             }, function (error) {
@@ -75,8 +128,8 @@
         }
         else {
             $http({
-                method: 'PUT',
-                url: $config.baseApiUrl + '/Employee/',
+                method: 'POST',
+                url: constantValue.baseApiUrl + '/Employee/UpdateEmployee',
                 data: obj
             }).then(function (success) {
                 $location.path('/list');
@@ -100,7 +153,7 @@
         debugger;
         $http({
             method: 'GET',
-            url: $config.baseApiUrl + '/Employee/' + $routeParams.id
+            url: constantValue.baseApiUrl + '/Employee/' + $routeParams.id
             
         }).then(function (success) {
             debugger;
@@ -128,3 +181,7 @@
 }
 ]);
 
+
+
+//Byte converter document
+//http://www.macaalay.com/2014/09/26/rendering-images-from-byte-arrays-and-converting-images-to-byte-arrays-using-angularjs/

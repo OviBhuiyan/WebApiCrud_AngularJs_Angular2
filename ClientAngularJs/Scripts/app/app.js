@@ -5,7 +5,7 @@ var EmpApp = angular.module('EmpApp', ['ngRoute', 'chieffancypants.loadingBar', 
         cfpLoadingBarProvider.includeSpinner = true;
     });
 // Example configuration stored as constant
-EmpApp.constant('$config', {
+EmpApp.constant('constantValue', {
     baseApiUrl: 'http://localhost:55572/api',
     //baseUrl: '/',
     enableDebug: true

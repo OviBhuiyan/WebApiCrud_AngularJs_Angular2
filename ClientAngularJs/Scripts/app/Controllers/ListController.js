@@ -1,16 +1,16 @@
-﻿EmpApp.controller("ListController", ['$scope', '$http', '$location', '$routeParams', '$config', function ($scope, $http, $location, $routeParams, $config, $timeout, cfpLoadingBar) {
+﻿EmpApp.controller("ListController", ['$scope', '$http', '$location', '$routeParams', 'constantValue', function ($scope, $http, $location, $routeParams, constantValue, $timeout, cfpLoadingBar) {
 
 
     debugger;
     $http({
         method: 'GET',
-        url: $config.baseApiUrl +'/Employee'
+        url: constantValue.baseApiUrl +'/Employee/GetEmployeeList'
     }).then(function (success) {
         debugger;
        
         $scope.employees = success.data;
         }, function (error) {
-            alert("fail");
+            alert("Get to Employee list fail, Try Again !");
     });
 
 }

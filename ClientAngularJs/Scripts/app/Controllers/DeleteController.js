@@ -1,10 +1,10 @@
-﻿EmpApp.controller("DeleteController", ['$scope', '$http', '$location', '$routeParams', '$config', function ($scope, $http, $location, $routeParams, $config, $timeout, cfpLoadingBar) {
+﻿EmpApp.controller("DeleteController", ['$scope', '$http', '$location', '$routeParams', 'constantValue', function ($scope, $http, $location, $routeParams, constantValue, $timeout, cfpLoadingBar) {
 
         $scope.id = $routeParams.id;
 
         $http({
             method: 'GET',
-            url: $config.baseApiUrl + '/Employee/' + $routeParams.id
+            url: constantValue.baseApiUrl + '/Employee/' + $routeParams.id
 
         }).then(function (success) {
             debugger;
@@ -39,7 +39,7 @@
         $scope.delete = function () {
             $http({
                 method: 'DELETE',
-                url: $config.baseApiUrl + '/Employee/' + $scope.id 
+                url: constantValue.baseApiUrl + '/Employee/' + $scope.id 
                
             }).then(function (success) {
                 $location.path('/list');
